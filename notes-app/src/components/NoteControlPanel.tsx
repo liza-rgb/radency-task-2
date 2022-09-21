@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "../state";
+import "../styles/NoteContolPanel.css";
 
 type ControlProps = {
     note_id: string,

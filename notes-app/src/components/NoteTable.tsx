@@ -5,6 +5,7 @@ import { getCategoryIconClass } from "../lib/categories";
 import { NotesState } from "../state/reducers/notesReducer";
 import { formatText } from "../lib/text-overflow";
 import NoteControlPanel from "./NoteControlPanel";
+import "../styles/NoteTable.css";
 
 export default function NoteTable() {
     const storedNotes = useSelector<NotesState, NotesState["notes"]>((state) => state.notes);
@@ -18,13 +19,13 @@ export default function NoteTable() {
         if (isArchiveMode) {
             return ( 
                 <button onClick={changeMode}>
-                    <i className="fa-regular fa-note-sticky"></i> View Active
+                    <i className="fa-regular fa-note-sticky"></i> Active
                 </button>
             )
         }
         return (
             <button onClick={changeMode}>
-                <i className="fa-solid fa-box-archive"></i> View Archive
+                <i className="fa-solid fa-box-archive"></i> Archive
             </button>
         )
     }
