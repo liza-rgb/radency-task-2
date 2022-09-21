@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { formatDate, getDatesList } from "../lib/dates";
 import { getCategoryIconClass } from "../lib/categories";
 import { NotesState } from "../state/reducers/notesReducer";
+import { formatText } from "../lib/text-overflow";
 import NoteControlPanel from "./NoteControlPanel";
 
 export default function NoteTable() {
@@ -38,10 +39,10 @@ export default function NoteTable() {
                                 <td>
                                     <i className={getCategoryIconClass(note.category)}></i>
                                 </td>
-                                <td>{note.name}</td>
+                                <td>{formatText(note.name, 20)}</td>
                                 <td>{formatDate(note.created)}</td>
                                 <td>{note.category}</td>
-                                <td>{note.content}</td>
+                                <td>{formatText(note.content, 20)}</td>
                                 <td>{getDatesList(note.content)}</td>
                                 <NoteControlPanel isArchiveMode={isArchiveMode} note_id={note.id} />
                             </tr>
