@@ -1,25 +1,28 @@
 export const categories = [
     {
         name: "Task",
-        icon: '<i class="fa-solid fa-list-check"></i>'
+        iconClass: "fa-solid fa-list-check"
     },
     {
         name: "Random Thought",
-        icon: '<i class="fa-solid fa-brain"></i>'
+        iconClass: "fa-solid fa-brain"
     },
     {
         name: "Idea",
-        icon: '<i class="fa-regular fa-lightbulb"></i>'
+        iconClass: "fa-regular fa-lightbulb"
     }, 
     {
         name: "Quote",
-        icon: '<i class="fa-solid fa-quote-left"></i>'
+        iconClass: "fa-solid fa-quote-left"
     }
 ];
 
-// export function getCategoryIcon(category_name: string){
-//     return categories.find((c) => c.name === category_name).icon;
-// }
+export function getCategoryIconClass(category_name: string){
+    const category = categories.find((c) => c.name === category_name);
+    if (category) {
+        return category.iconClass;
+    }
+}
 
 // export function countNotesByCategory(category, storedNotes) {
 //     let activeNotes = 0;

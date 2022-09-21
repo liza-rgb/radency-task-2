@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { formatDate, getDatesList } from "../lib/dates";
+import { getCategoryIconClass } from "../lib/categories";
 import { NotesState } from "../state/reducers/notesReducer";
 import NoteControlPanel from "./NoteControlPanel";
 
@@ -34,7 +35,9 @@ export default function NoteTable() {
                     if (note.isArchived === isArchiveMode) {
                         return (
                             <tr>
-                                <td>???</td>
+                                <td>
+                                    <i className={getCategoryIconClass(note.category)}></i>
+                                </td>
                                 <td>{note.name}</td>
                                 <td>{formatDate(note.created)}</td>
                                 <td>{note.category}</td>
