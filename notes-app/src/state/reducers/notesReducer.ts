@@ -2,6 +2,7 @@ import { Note } from "../interfaces/notes";
 import { NotesData } from "../../data/notes";
 import { NoteAction } from "../actions/notes";
 import { NoteActionType } from "../action-types/notes";
+import { v4 as uuidv4 } from "uuid";
 
 export interface NotesState {
     notes: Note[];
@@ -15,7 +16,7 @@ const notesReducer = (state: NotesState = initialState, action: NoteAction) => {
     switch (action.type) {
         case NoteActionType.ADD: {
             const newNote = {
-                id: "blablabla",
+                id: uuidv4(),
                 created: new Date(),
                 name: action.name,
                 category: action.category,

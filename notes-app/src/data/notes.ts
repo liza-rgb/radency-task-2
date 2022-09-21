@@ -1,8 +1,9 @@
 import { Note } from '../state/interfaces/notes';
+import { v4 as uuidv4 } from "uuid";
 
 export const NotesData: Note[] = [
     {
-        id: "1",
+        id: uuidv4(),
         created: new Date(),
         name: "Shopping list",
         category: "Task",
@@ -10,7 +11,7 @@ export const NotesData: Note[] = [
         isArchived: false
     },
     {
-        id: "2",
+        id: uuidv4(),
         created: new Date(),
         name: "The theory of evolution",
         category: "Random Thought",
@@ -18,7 +19,7 @@ export const NotesData: Note[] = [
         isArchived: false
     },
     {
-        id: "3",
+        id: uuidv4(),
         created: new Date(),
         name: "New Feature",
         category: "Idea",
@@ -26,7 +27,7 @@ export const NotesData: Note[] = [
         isArchived: false
     },
     {
-        id: "4",
+        id: uuidv4(),
         created: new Date(),
         name: "William Gaddis", 
         category: "Quote",
@@ -34,7 +35,7 @@ export const NotesData: Note[] = [
         isArchived: false
     }, 
     {
-        id: "5",
+        id: uuidv4(),
         name: "New Feature",
         created: new Date(),
         category: "Idea",
@@ -42,7 +43,7 @@ export const NotesData: Note[] = [
         isArchived: false   
     }, 
     { 
-        id: "6",
+        id: uuidv4(),
         name: "Pizza recipe",
         created: new Date(),
         category: "Idea",
@@ -50,7 +51,7 @@ export const NotesData: Note[] = [
         isArchived: false   
     }, 
     {
-        id: "7",
+        id: uuidv4(),
         name: "Lab #2 Algorithms and Data Structures",
         created: new Date(),
         category: "Task",
