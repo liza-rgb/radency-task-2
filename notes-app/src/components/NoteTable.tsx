@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { formatDate, getDatesList } from "../lib/dates";
+import { NotesState } from "../state/reducers/notesReducer";
+import NoteControlPanel from "./NoteControlPanel";
 
 export default function NoteTable() {
-    const [isArchiveMode, setIsArchiveMode] = useState<Boolean>(false);
+    const storedNotes = useSelector<NotesState, NotesState["notes"]>((state) => state.notes);
+    const [isArchiveMode, setIsArchiveMode] = useState<boolean>(false);
 
     function changeMode() {
         setIsArchiveMode(!isArchiveMode);
@@ -23,52 +27,26 @@ export default function NoteTable() {
         )
     }
 
-    function showControlPanel(note) {
-        if (!isArchiveMode) {
-            return `
-            <td class="control-panel">
-                <button onclick=showEditForm(${note.id})>
-                    <i class="fa-solid fa-pencil"></i>
-                </button>
-                <button onclick=archiveNote(${note.id})>
-                    <i class="fa-solid fa-box-archive"></i>                    </button>
-                 <button onclick=deleteNote(${note.id})>
-                    <i class="fa-solid fa-trash"></i>
-                </button>
-            </td> `;
-        }
-        if (isArchiveMode) {
-            return `
-            <td class="control-panel">
-                <button onclick=unarchiveNote(${note.id})>
-                    <i class="fa-solid fa-box-open"></i>
-                </button>
-                <button onclick=deleteNote(${note.id})>
-                    <i class="fa-solid fa-trash"></i>                    
-                </button>
-            </td>`;
-        }
-    }
-
     function showNotesTable() {
-        let notesTableHTML = "";
-        storedNotes.map((note) => {
-            if (note.isArchived === isArchiveMode) {
-                notesTableHTML += `
-                <tr>
-                    <td>
-                        ${getCategoryIcon(note.category)}
-                    </td>
-                    <td>${note.name}</td>
-                    <td>${formatDate(note.created)}</td>
-                    <td>${note.category}</td>
-                    <td>${note.content}</td>
-                    <td>${getDatesList(note.content)}</td>
-                    ${showControlPanel(note)}
-                </tr> `;
-            }
-        });
-        return notesTableHTML;
+        return (
+            <tbody>
+                {storedNotes.map((note) => {
+                    if (note.isArchived === isArchiveMode) {
+                        return (
+                            <tr>
+                                <td>???</td>
+                                <td>{note.name}</td>
+                                <td>{formatDate(note.created)}</td>
+                                <td>{note.category}</td>
+                                <td>{note.content}</td>
+                                <td>{getDatesList(note.content)}</td>
+                                <NoteControlPanel isArchiveMode={isArchiveMode} note_id={note.id} />
+                            </tr>
+                        )
+                    }
+                })}
+            </tbody>
+        )
     }
 
     return (
@@ -84,9 +62,7 @@ export default function NoteTable() {
                     <th>{showModeButton()}</th>
                 </tr>
             </thead>
-            <tbody>
-                {showNotesTable()}
-            </tbody>
+            {showNotesTable()}
         </table>
     )
 }

@@ -17,25 +17,25 @@ export const categories = [
     }
 ];
 
-export function getCategoryIcon(category){
-    return categories.find((c) => c.name === category).icon;
-}
+// export function getCategoryIcon(category_name: string){
+//     return categories.find((c) => c.name === category_name).icon;
+// }
 
-export function countNotesByCategory(category, storedNotes) {
-    let activeNotes = 0;
-    let archivedNotes = 0;
-    storedNotes.map((note) => {
-        if (note.category === category) {
-            if (note.isArchived) {
-                archivedNotes++;
-            } else {
-                activeNotes++;
-            }
-        }
-    })
-    return { activeNotes, archivedNotes }
-}
+// export function countNotesByCategory(category, storedNotes) {
+//     let activeNotes = 0;
+//     let archivedNotes = 0;
+//     storedNotes.map((note) => {
+//         if (note.category === category) {
+//             if (note.isArchived) {
+//                 archivedNotes++;
+//             } else {
+//                 activeNotes++;
+//             }
+//         }
+//     })
+//     return { activeNotes, archivedNotes }
+// }
 
-export function formatCategory(category) {
-    return category.toLowerCase().replace(" ", "-");
-}
+// export function formatCategory(category_name: string) {
+//     return category_name.toLowerCase().replace(" ", "-");
+// }

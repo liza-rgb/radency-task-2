@@ -3,7 +3,7 @@ import { NotesData } from "../../data/notes";
 import { NoteAction } from "../actions/notes";
 import { NoteActionType } from "../action-types/notes";
 
-interface NotesState {
+export interface NotesState {
     notes: Note[];
 }
   
@@ -22,34 +22,58 @@ const notesReducer = (state: NotesState = initialState, action: NoteAction) => {
                 content: action.content,
                 isArchived: false
             }
-            return state.notes.push(newNote);
+            return { ...state, notes: [...state.notes, newNote] };
         }
         case NoteActionType.EDIT: {
             const editNoteIndex = state.notes.findIndex(note => note.id === action.id);
             if (editNoteIndex !== 1) {
-                return state.notes[editNoteIndex] = {
+                const storedNotes = state.notes;
+                storedNotes[editNoteIndex] = {
                     ...state.notes[editNoteIndex],
                     name: action.name,
                     category: action.category,
                     content: action.content
                 }
+                return { ...state, notes: storedNotes }
             }
             return state;
         }
         case NoteActionType.DELETE: {
-            return state.notes.filter(note => note.id !== action.id);
+            return { ...state, notes: state.notes.filter(note => note.id !== action.id) }
         }
         case NoteActionType.ARCHIVE: {
-            const archiveNoteIndex = state.notes.findIndex(note => note.id === action.id);
-            if (archiveNoteIndex !== -1) {
-                return state.notes[archiveNoteIndex].isArchived = true;
+            const noteIndex = state.notes.findIndex(note => note.id === action.id);
+            if (noteIndex !== -1) {
+                const archiveNote = {
+                    ...state.notes[noteIndex],
+                    isArchived: true
+                }
+                return {
+                    ...state,
+                    notes: [ 
+                        ...state.notes.slice(0, noteIndex),
+                        archiveNote,
+                        ...state.notes.slice(noteIndex + 1)
+                    ]
+                }
             }
             return state;
         }
         case NoteActionType.UNARCHIVE: {
-            const unarchiveNoteIndex = state.notes.findIndex(note => note.id === action.id);
-            if (unarchiveNoteIndex !== -1) {
-                return state.notes[unarchiveNoteIndex].isArchived = false;
+            const noteIndex = state.notes.findIndex(note => note.id === action.id);
+            if (noteIndex !== -1) {
+                const unarchiveNote = {
+                    ...state.notes[noteIndex],
+                    isArchived: false
+                }
+                return {
+                    ...state,
+                    notes: [ 
+                        ...state.notes.slice(0, noteIndex),
+                        unarchiveNote,
+                        ...state.notes.slice(noteIndex + 1)
+                    ]
+                }
             }
             return state;
         }
