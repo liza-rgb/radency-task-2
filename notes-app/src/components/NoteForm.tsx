@@ -8,6 +8,7 @@ import { notesActionCreators } from "../state";
 import { popupActionCreators } from "../state";
 import { PopupState } from "../state/reducers/popupReducer";
 import { PopupType } from "../state/reducers/popupReducer";
+import { validateForm } from "../lib/validateForm";
 import "../styles/NoteForm.css";
 
 export default function NoteForm() {
@@ -26,13 +27,18 @@ export default function NoteForm() {
 
     function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        if (popupInfo.type === PopupType.ADD) {
-            addNote(name, category, content);
+        const isValidForm = validateForm(name, category, content);
+        if (isValidForm) {
+            if (popupInfo.type === PopupType.ADD) {
+                addNote(name, category, content);
+            }
+            if (popupInfo.type === PopupType.EDIT) {
+                editNote(popupInfo.note_id, name, category, content);
+            }
+            disablePopup();
+        } else {
+            alert("Please, provide information for all fields!");
         }
-        if (popupInfo.type === PopupType.EDIT) {
-            editNote(popupInfo.note_id, name, category, content);
-        }
-        disablePopup();
     }
 
     function updateName(event: React.ChangeEvent<HTMLInputElement>) {
@@ -48,9 +54,13 @@ export default function NoteForm() {
             <div>
                 {categories.map((cat) => {
                     return (
-                        <span>
-                            <input type="radio" id={"edit-note-category-" + formatCategory(cat.name)}
-                                name="category" value={cat.name} checked={cat.name === category} onChange={() => setCategory(cat.name)}/>            
+                        <span key={"category-" + cat.name} >
+                            <input type="radio" 
+                                id={"edit-note-category-" + formatCategory(cat.name)}
+                                name="category" 
+                                value={cat.name} 
+                                checked={cat.name === category} 
+                                onChange={() => setCategory(cat.name)}/>            
                             <label htmlFor={"edit-note-category-" + formatCategory(cat.name)}>{cat.name}</label>
                         </span>
                     );
@@ -60,8 +70,8 @@ export default function NoteForm() {
     }
     
     return (
-        <div className="popup">
-            <div className="popup-add">
+        <div className="NoteForm">
+            <div className="popup">
                 <div className="card">
                     <div className="card-header">{popupInfo.type === PopupType.ADD ? "Add New Note" : "Edit Note"} 
                         <button id="close-add-note-form" onClick={disablePopup}>
@@ -72,11 +82,20 @@ export default function NoteForm() {
                         <form onSubmit={handleFormSubmit}>
                             <div>
                                 <label htmlFor="add-note-name-input">Name:</label>
-                                <input type="text" name="name" id="add-note-name-input" onChange={updateName} value={name}/>
+                                <input type="text" 
+                                    name="name" 
+                                    id="add-note-name-input" 
+                                    onChange={updateName} 
+                                    value={name}/>
                             </div>
                             <div>
                                 <label htmlFor="add-note-content-input">Content:</label>
-                                <textarea name="content" id="add-note-content-input" onChange={updateContent} value={content}></textarea>
+                                <textarea 
+                                    name="content" 
+                                    id="add-note-content-input" 
+                                    onChange={updateContent} 
+                                    value={content}>
+                                </textarea>
                             </div>
                             <p>Please select a note category:</p>
                             {showRadioButtonsCategory()}

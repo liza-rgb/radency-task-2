@@ -20,16 +20,19 @@ export const notesReducer = (state: Note[] = initialState, action: NoteAction) =
             return [ ...state, newNote ];
         }
         case NoteActionType.EDIT: {
-            const editNoteIndex = state.findIndex(note => note.id === action.id);
-            if (editNoteIndex !== 1) {
-                const storedNotes = state;
-                storedNotes[editNoteIndex] = {
-                    ...state[editNoteIndex],
+            const noteIndex = state.findIndex(note => note.id === action.id);
+            if (noteIndex > -1) {
+                const editNote = {
+                    ...state[noteIndex],
                     name: action.name,
                     category: action.category,
                     content: action.content
                 }
-                return storedNotes;
+                return [
+                    ...state.slice(0, noteIndex),
+                    editNote,
+                    ...state.slice(noteIndex + 1)
+                ]
             }
             return state;
         }
@@ -38,7 +41,7 @@ export const notesReducer = (state: Note[] = initialState, action: NoteAction) =
         }
         case NoteActionType.ARCHIVE: {
             const noteIndex = state.findIndex(note => note.id === action.id);
-            if (noteIndex !== -1) {
+            if (noteIndex > -1) {
                 const archiveNote = {
                     ...state[noteIndex],
                     isArchived: true
@@ -53,7 +56,7 @@ export const notesReducer = (state: Note[] = initialState, action: NoteAction) =
         }
         case NoteActionType.UNARCHIVE: {
             const noteIndex = state.findIndex(note => note.id === action.id);
-            if (noteIndex !== -1) {
+            if (noteIndex > -1) {
                 const unarchiveNote = {
                     ...state[noteIndex],
                     isArchived: false

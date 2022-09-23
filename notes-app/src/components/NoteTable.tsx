@@ -47,7 +47,7 @@ export default function NoteTable() {
                 {storedNotes.map((note) => {
                     if (note.isArchived === isArchiveMode) {
                         return (
-                            <tr>
+                            <tr key={"note-table-row-" + note.id}>
                                 <td>
                                     <i className={getCategoryIconClass(note.category)}></i>
                                 </td>
@@ -65,11 +65,15 @@ export default function NoteTable() {
         )
     }
 
+    const addNoteButton = (
+        <button id="add-button" onClick={() => enableAddPopup()}>Add Note</button>
+    );
+
     return (
         <div className="NoteTable">
             <table id="notes-table">
                 <thead>
-                    <tr>
+                    <tr key="note-table-row-header">
                         <th></th>
                         <th>Name</th>
                         <th>Created</th>
@@ -81,7 +85,7 @@ export default function NoteTable() {
                 </thead>
                 {showNotesTable()}
             </table>
-            <button id="add-button" onClick={() => enableAddPopup()}>Add Note</button>
+            {!isArchiveMode ? addNoteButton : ""}
             {popupInfo.type !== PopupType.NONE ? <NoteForm /> : ""}
         </div>
     )

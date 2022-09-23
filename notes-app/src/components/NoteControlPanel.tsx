@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { notesActionCreators } from "../state";
 import { popupActionCreators } from "../state";
-import "../styles/NoteContolPanel.css";
+import "../styles/NoteControlPanel.css";
 
 type ControlProps = {
     note_id: string,
@@ -17,29 +17,29 @@ export default function NoteControlPanel({ note_id, isArchiveMode }: ControlProp
 
     function activePanel() {
         return (
-        <td className="control-panel">
-            <button onClick={() => enableEditPopup(note_id)}>
-                <i className="fa-solid fa-pencil"></i>
-            </button>
-            <button onClick={() => archiveNote(note_id)}>
-                <i className="fa-solid fa-box-archive"></i> 
-            </button>
-            <button onClick={() => deleteNote(note_id)}>
-                <i className="fa-solid fa-trash"></i>
-            </button>
-        </td>);
+            <td className="NoteControlPanel">
+                <button onClick={()=> enableEditPopup(note_id)}>
+                    <i className="fa-solid fa-pencil"></i>
+                </button>
+                <button onClick={() => archiveNote(note_id)}>
+                    <i className="fa-solid fa-box-archive"></i> 
+                </button>
+                <button onClick={() => deleteNote(note_id)}>
+                    <i className="fa-solid fa-trash"></i>
+                </button>
+            </td>);
     }
 
     function archivePanel() {
         return (
-        <td className="control-panel">
-            <button onClick={() => unarchiveNote(note_id)}>
-                <i className="fa-solid fa-box-open"></i> 
-            </button>
-            <button onClick={() => deleteNote(note_id)}>
-                <i className="fa-solid fa-trash"></i>
-            </button>
-        </td>);
+            <td className="NoteControlPanel">
+                <button onClick={() => unarchiveNote(note_id)}>
+                    <i className="fa-solid fa-box-open"></i> 
+                </button>
+                <button onClick={() => deleteNote(note_id)}>
+                    <i className="fa-solid fa-trash"></i>
+                </button>
+            </td>);
     }
 
     if (isArchiveMode) {
