@@ -1,4 +1,4 @@
-.popup {
+.NoteForm {
     background-color: rgba(0, 0, 0, 0.267);
     position: fixed;
     width: 100%;
@@ -7,20 +7,20 @@
     left: 0;
 }
 
-.popup .popup-add, .popup .popup-edit {
+.NoteForm .popup {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-.popup .card {
+.NoteForm .card {
     background-color: #fff;
     padding: 20px;
     border-radius: 15px;
 }
 
-.popup .card-header { 
+.NoteForm .card-header { 
     display: flex;
     justify-content: space-between;
     font-size: 20px;
@@ -29,35 +29,35 @@
     border-bottom: 2px solid #E7EAF5;
 }
 
-.popup .card div {
+.NoteForm .card div {
     margin-top: 10px;
 }
 
-.popup .card p {
+.NoteForm .card p {
     margin: 5px 0px;
 }
 
-.popup .card input[type=text],  
-.popup .card textarea {
+.NoteForm .card input[type=text],  
+.NoteForm .card textarea {
     width: 100%;
     border: 1px solid #999999;
     border-radius: 10px;
     font-family: 'Roboto', sans-serif;
 }
 
-.popup .card .card-header button {
+.NoteForm .card .card-header button {
     background-color: transparent;
     border: none;
     font-size: 20px;
     text-align: right;
 }
 
-.popup .card .card-header button:hover {
+.NoteForm .card .card-header button:hover {
     color: #999999;
     cursor: pointer;
 }
 
-.popup .card .card-body button {
+.NoteForm .card .card-body button {
     font-size: 15px;
     font-weight: 600;
     padding: 5px 15px;
@@ -68,7 +68,7 @@
     border-radius: 10px;
 }
 
-.popup .card .card-body button:hover {
+.NoteForm .card .card-body button:hover {
     color: #fff;
     background-color: #999999;
     cursor: pointer;

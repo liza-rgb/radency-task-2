@@ -23,30 +23,32 @@ export default function SummaryTable() {
     }
     
     return (
-        <table id="summary-table">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Note Category</th>
-                    <th>Active</th>
-                    <th>Archive</th>
-                </tr>
-            </thead>
-            <tbody>
-                {categories.map((category) => {
-                    const notesCount = countNotesByCategory(category.name);
-                    return (
-                        <tr>
-                            <td>
-                                <i className={category.iconClass}></i>
-                            </td>
-                            <td>{category.name}</td>
-                            <td>{notesCount.activeNotes}</td>
-                            <td>{notesCount.archivedNotes}</td>
-                        </tr>
-                    );
-                })}
-            </tbody>
-        </table>
+        <div className="SummaryTable">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Note Category</th>
+                        <th>Active</th>
+                        <th>Archive</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {categories.map((category) => {
+                        const notesCount = countNotesByCategory(category.name);
+                        return (
+                            <tr>
+                                <td>
+                                    <i className={category.iconClass}></i>
+                                </td>
+                                <td>{category.name}</td>
+                                <td>{notesCount.activeNotes}</td>
+                                <td>{notesCount.archivedNotes}</td>
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
+        </div>
     );
 }

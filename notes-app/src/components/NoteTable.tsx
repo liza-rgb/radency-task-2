@@ -65,6 +65,10 @@ export default function NoteTable() {
         )
     }
 
+    const addNoteButton = (
+        <button id="add-button" onClick={() => enableAddPopup()}>Add Note</button>
+    );
+
     return (
         <div className="NoteTable">
             <table id="notes-table">
@@ -81,7 +85,7 @@ export default function NoteTable() {
                 </thead>
                 {showNotesTable()}
             </table>
-            <button id="add-button" onClick={() => enableAddPopup()}>Add Note</button>
+            {!isArchiveMode ? addNoteButton : ""}
             {popupInfo.type !== PopupType.NONE ? <NoteForm /> : ""}
         </div>
     )

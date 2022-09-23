@@ -60,8 +60,8 @@ export default function NoteForm() {
     }
     
     return (
-        <div className="popup">
-            <div className="popup-add">
+        <div className="NoteForm">
+            <div className="popup">
                 <div className="card">
                     <div className="card-header">{popupInfo.type === PopupType.ADD ? "Add New Note" : "Edit Note"} 
                         <button id="close-add-note-form" onClick={disablePopup}>
