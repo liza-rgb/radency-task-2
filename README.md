@@ -6,3 +6,6 @@
 4) Aim to structure components properly (container, page, component), reuse components, and reflect the apps component hierarchy:
 https://dev.to/admantium/structuring-react-components-n6g
 5) Bonus task: Tables for “List of notes” and “Summary” should use the same table component.
+
+# Hosted on Netlify
+https://lustrous-cupcake-d32a39.netlify.app
