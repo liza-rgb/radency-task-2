@@ -1,7 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
-import { actionCreators } from "../state";
+import { notesActionCreators } from "../state";
+import { popupActionCreators } from "../state";
 import "../styles/NoteContolPanel.css";
 
 type ControlProps = {
@@ -11,12 +12,13 @@ type ControlProps = {
 
 export default function NoteControlPanel({ note_id, isArchiveMode }: ControlProps) {
     const dispatch = useDispatch();
-    const { addNote, editNote, deleteNote, archiveNote, unarchiveNote } = bindActionCreators(actionCreators, dispatch);
+    const { deleteNote, archiveNote, unarchiveNote } = bindActionCreators(notesActionCreators, dispatch);
+    const { enableEditPopup } = bindActionCreators(popupActionCreators, dispatch);
 
     function activePanel() {
         return (
         <td className="control-panel">
-            <button>
+            <button onClick={() => enableEditPopup(note_id)}>
                 <i className="fa-solid fa-pencil"></i>
             </button>
             <button onClick={() => archiveNote(note_id)}>

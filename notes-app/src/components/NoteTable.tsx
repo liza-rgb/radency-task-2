@@ -1,15 +1,26 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
 import { formatDate, getDatesList } from "../lib/dates";
 import { getCategoryIconClass } from "../lib/categories";
-import { NotesState } from "../state/reducers/notesReducer";
+import { RootState } from "../state/reducers";
 import { formatText } from "../lib/text-overflow";
 import NoteControlPanel from "./NoteControlPanel";
+import NoteForm from "./NoteForm";
+import { Note } from "../state/interfaces/notes";
+import { popupActionCreators } from "../state";
+import { PopupState } from "../state/reducers/popupReducer";
+import { PopupType } from "../state/reducers/popupReducer";
 import "../styles/NoteTable.css";
 
+
 export default function NoteTable() {
-    const storedNotes = useSelector<NotesState, NotesState["notes"]>((state) => state.notes);
+    const storedNotes = useSelector<RootState, Note[]>((state) => state.notes);
     const [isArchiveMode, setIsArchiveMode] = useState<boolean>(false);
+
+    const popupInfo = useSelector<RootState, PopupState>((state) => state.popup);
+    const dispatch = useDispatch();
+    const { enableAddPopup } = bindActionCreators(popupActionCreators, dispatch);
 
     function changeMode() {
         setIsArchiveMode(!isArchiveMode);
@@ -55,19 +66,23 @@ export default function NoteTable() {
     }
 
     return (
-        <table id="notes-table">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Name</th>
-                    <th>Created</th>
-                    <th>Category</th>
-                    <th>Content</th>
-                    <th>Dates</th>
-                    <th>{showModeButton()}</th>
-                </tr>
-            </thead>
-            {showNotesTable()}
-        </table>
+        <div className="NoteTable">
+            <table id="notes-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Created</th>
+                        <th>Category</th>
+                        <th>Content</th>
+                        <th>Dates</th>
+                        <th>{showModeButton()}</th>
+                    </tr>
+                </thead>
+                {showNotesTable()}
+            </table>
+            <button id="add-button" onClick={() => enableAddPopup()}>Add Note</button>
+            {popupInfo.type !== PopupType.NONE ? <NoteForm /> : ""}
+        </div>
     )
 }

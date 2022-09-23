@@ -1,12 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { NotesState } from "../state/reducers/notesReducer";
+import { RootState } from "../state/reducers";
 import { categories } from "../lib/categories";
+import { Note } from "../state/interfaces/notes";
 
 export default function SummaryTable() {
-    const storedNotes = useSelector<NotesState, NotesState["notes"]>((state) => state.notes);
+    const storedNotes = useSelector<RootState, Note[]>((state) => state.notes);
 
-    function countNotesByCategory(category_name: string, storedNotes: NotesState["notes"]) {
+    function countNotesByCategory(category_name: string) {
         let activeNotes = 0;
         let archivedNotes = 0;
         storedNotes.map((note) => {
@@ -33,7 +34,7 @@ export default function SummaryTable() {
             </thead>
             <tbody>
                 {categories.map((category) => {
-                    const notesCount = countNotesByCategory(category.name, storedNotes);
+                    const notesCount = countNotesByCategory(category.name);
                     return (
                         <tr>
                             <td>

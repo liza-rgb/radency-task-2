@@ -3,5 +3,5 @@ export enum NoteActionType {
     EDIT = "edit_note",
     DELETE = "delete_note",
     ARCHIVE = "archive_note",
-    UNARCHIVE = "unarchive_note",
+    UNARCHIVE = "unarchive_note"
 }

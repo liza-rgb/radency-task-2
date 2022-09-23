@@ -1,5 +1,9 @@
+.NoteTable {
+    margin-bottom: 40px;
+}
+
 table {
-    margin: 0 auto 40px;
+    margin: 0 auto;
     border-spacing: 0 10px; 
 }
 
@@ -69,4 +73,20 @@ tbody {
 
 section {
     margin-bottom: 80px;
+}
+
+#add-button {
+    text-align: center;
+    padding: 5px 25px;
+    display: block;
+    margin: 0 auto;
+    background-color: transparent;
+    color: #000;
+    border: 2px solid #000;
+}
+
+#add-button:hover {
+    color: #999999;
+    border: 2px solid #999999;
+    cursor: pointer;
 }

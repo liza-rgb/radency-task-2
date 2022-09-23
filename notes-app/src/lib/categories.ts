@@ -24,6 +24,6 @@ export function getCategoryIconClass(category_name: string){
     }
 }
 
-// export function formatCategory(category_name: string) {
-//     return category_name.toLowerCase().replace(" ", "-");
-// }
+export function formatCategory(category_name: string) {
+    return category_name.toLowerCase().replace(" ", "-");
+}
