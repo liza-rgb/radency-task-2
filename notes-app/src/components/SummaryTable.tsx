@@ -14,7 +14,7 @@ export default function SummaryTable() {
                 {categories.map((category) => {
                     const notesCount = countNotesByCategory(category.name, storedNotes);
                     return (
-                        <tr key={"summary-table" + keyCounter++}>
+                        <tr key={"summary-table-" + keyCounter++}>
                             <td>
                                 <i className={category.iconClass}></i>
                             </td>
