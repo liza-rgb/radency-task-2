@@ -21,12 +21,31 @@ export default function SummaryTable() {
         })
         return { activeNotes, archivedNotes }
     }
+
+    function showSummaryTable() {
+        let keyCounter = 0;
+        return (
+            categories.map((category) => {
+                const notesCount = countNotesByCategory(category.name);
+                return (
+                    <tr key={"summary-table-row-" + keyCounter++}>
+                        <td>
+                            <i className={category.iconClass}></i>
+                        </td>
+                        <td>{category.name}</td>
+                        <td>{notesCount.activeNotes}</td>
+                        <td>{notesCount.archivedNotes}</td>
+                    </tr>
+                );
+            })
+        );
+    }
     
     return (
         <div className="SummaryTable">
             <table>
                 <thead>
-                    <tr>
+                    <tr key="summary-table-row-0">
                         <th></th>
                         <th>Note Category</th>
                         <th>Active</th>
@@ -34,19 +53,7 @@ export default function SummaryTable() {
                     </tr>
                 </thead>
                 <tbody>
-                    {categories.map((category) => {
-                        const notesCount = countNotesByCategory(category.name);
-                        return (
-                            <tr>
-                                <td>
-                                    <i className={category.iconClass}></i>
-                                </td>
-                                <td>{category.name}</td>
-                                <td>{notesCount.activeNotes}</td>
-                                <td>{notesCount.archivedNotes}</td>
-                            </tr>
-                        );
-                    })}
+                    {showSummaryTable()}
                 </tbody>
             </table>
         </div>

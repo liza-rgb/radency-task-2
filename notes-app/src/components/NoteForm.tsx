@@ -54,9 +54,13 @@ export default function NoteForm() {
             <div>
                 {categories.map((cat) => {
                     return (
-                        <span>
-                            <input type="radio" id={"edit-note-category-" + formatCategory(cat.name)}
-                                name="category" value={cat.name} checked={cat.name === category} onChange={() => setCategory(cat.name)}/>            
+                        <span id={"category-" + cat} >
+                            <input type="radio" 
+                                id={"edit-note-category-" + formatCategory(cat.name)}
+                                name="category" 
+                                value={cat.name} 
+                                checked={cat.name === category} 
+                                onChange={() => setCategory(cat.name)}/>            
                             <label htmlFor={"edit-note-category-" + formatCategory(cat.name)}>{cat.name}</label>
                         </span>
                     );

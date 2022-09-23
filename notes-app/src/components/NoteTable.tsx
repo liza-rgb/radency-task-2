@@ -42,12 +42,13 @@ export default function NoteTable() {
     }
 
     function showNotesTable() {
+        let keyCounter = 0;
         return (
             <tbody>
                 {storedNotes.map((note) => {
                     if (note.isArchived === isArchiveMode) {
                         return (
-                            <tr>
+                            <tr key={"note-table-row-" + keyCounter++}>
                                 <td>
                                     <i className={getCategoryIconClass(note.category)}></i>
                                 </td>
@@ -73,7 +74,7 @@ export default function NoteTable() {
         <div className="NoteTable">
             <table id="notes-table">
                 <thead>
-                    <tr>
+                    <tr key="note-table-row-0">
                         <th></th>
                         <th>Name</th>
                         <th>Created</th>
