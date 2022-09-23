@@ -54,7 +54,7 @@ export default function NoteForm() {
             <div>
                 {categories.map((cat) => {
                     return (
-                        <span id={"category-" + cat} >
+                        <span key={"category-" + cat.name} >
                             <input type="radio" 
                                 id={"edit-note-category-" + formatCategory(cat.name)}
                                 name="category" 
@@ -82,11 +82,20 @@ export default function NoteForm() {
                         <form onSubmit={handleFormSubmit}>
                             <div>
                                 <label htmlFor="add-note-name-input">Name:</label>
-                                <input type="text" name="name" id="add-note-name-input" onChange={updateName} value={name}/>
+                                <input type="text" 
+                                    name="name" 
+                                    id="add-note-name-input" 
+                                    onChange={updateName} 
+                                    value={name}/>
                             </div>
                             <div>
                                 <label htmlFor="add-note-content-input">Content:</label>
-                                <textarea name="content" id="add-note-content-input" onChange={updateContent} value={content}></textarea>
+                                <textarea 
+                                    name="content" 
+                                    id="add-note-content-input" 
+                                    onChange={updateContent} 
+                                    value={content}>
+                                </textarea>
                             </div>
                             <p>Please select a note category:</p>
                             {showRadioButtonsCategory()}
