@@ -8,6 +8,7 @@ import { notesActionCreators } from "../state";
 import { popupActionCreators } from "../state";
 import { PopupState } from "../state/reducers/popupReducer";
 import { PopupType } from "../state/reducers/popupReducer";
+import { validateForm } from "../lib/validateForm";
 import "../styles/NoteForm.css";
 
 export default function NoteForm() {
@@ -26,13 +27,18 @@ export default function NoteForm() {
 
     function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        if (popupInfo.type === PopupType.ADD) {
-            addNote(name, category, content);
+        const isValidForm = validateForm(name, category, content);
+        if (isValidForm) {
+            if (popupInfo.type === PopupType.ADD) {
+                addNote(name, category, content);
+            }
+            if (popupInfo.type === PopupType.EDIT) {
+                editNote(popupInfo.note_id, name, category, content);
+            }
+            disablePopup();
+        } else {
+            alert("Please, provide information for all fields!");
         }
-        if (popupInfo.type === PopupType.EDIT) {
-            editNote(popupInfo.note_id, name, category, content);
-        }
-        disablePopup();
     }
 
     function updateName(event: React.ChangeEvent<HTMLInputElement>) {
