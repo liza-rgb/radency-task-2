@@ -10,17 +10,18 @@ export default function SummaryTable() {
     function showSummaryTable() {
         let keyCounter = 0;
         return (
-            <tbody>
+            <tbody className="text-secondary">
                 {categories.map((category) => {
                     const notesCount = countNotesByCategory(category.name, storedNotes);
                     return (
-                        <tr key={"summary-table-" + keyCounter++}>
-                            <td>
+                        <tr key={"summary-table-" + keyCounter++}
+                            className="bg-primary">
+                            <td className="text-black p-2 text-lg">
                                 <i className={category.iconClass}></i>
                             </td>
-                            <td>{category.name}</td>
-                            <td>{notesCount.activeNotes}</td>
-                            <td>{notesCount.archivedNotes}</td>
+                            <td className="text-black p-2">{category.name}</td>
+                            <td className="text-center p-2">{notesCount.activeNotes}</td>
+                            <td className="text-center p-2">{notesCount.archivedNotes}</td>
                         </tr>
                     );
                 })}
@@ -30,13 +31,13 @@ export default function SummaryTable() {
 
     return (
         <div className="SummaryTable">
-            <table>
-                <thead>
+            <table className="mx-auto table-fixed border-separate border-spacing-y-2">
+                <thead className="text-white bg-secondary">
                     <tr key="summary-table-header">
-                        <th></th>
-                        <th>Note Category</th>
-                        <th>Active</th>
-                        <th>Archive</th>
+                        <th className="w-10"></th>
+                        <th className="w-33 p-2 text-black">Note Category</th>
+                        <th className="w-28">Active</th>
+                        <th className="w-28">Archive</th>
                     </tr>
                 </thead>
                 {showSummaryTable()}

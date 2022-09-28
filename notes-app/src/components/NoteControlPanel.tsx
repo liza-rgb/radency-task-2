@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { notesActionCreators } from "../state";
 import { popupActionCreators } from "../state";
-import "../styles/NoteControlPanel.css";
 
 type ControlProps = {
     note_id: string,
@@ -17,33 +16,38 @@ export default function NoteControlPanel({ note_id, isArchiveMode }: ControlProp
 
     function activePanel() {
         return (
-            <td className="NoteControlPanel">
-                <button onClick={()=> enableEditPopup(note_id)}>
+            <div className="text-xl flex justify-center">
+                <button className="hover:text-black p-1 transition"
+                    onClick={()=> enableEditPopup(note_id)}>
                     <i className="fa-solid fa-pencil"></i>
                 </button>
-                <button onClick={() => archiveNote(note_id)}>
+                <button className="hover:text-black p-1 transition"
+                    onClick={() => archiveNote(note_id)}>
                     <i className="fa-solid fa-box-archive"></i> 
                 </button>
-                <button onClick={() => deleteNote(note_id)}>
+                <button className="hover:text-black p-1 transition"
+                    onClick={() => deleteNote(note_id)}>
                     <i className="fa-solid fa-trash"></i>
                 </button>
-            </td>);
+            </div>);
     }
 
     function archivePanel() {
         return (
-            <td className="NoteControlPanel">
-                <button onClick={() => unarchiveNote(note_id)}>
+            <div className="text-xl flex justify-center">
+                <button className="hover:text-black p-1"
+                    onClick={() => unarchiveNote(note_id)}>
                     <i className="fa-solid fa-box-open"></i> 
                 </button>
-                <button onClick={() => deleteNote(note_id)}>
+                <button className="hover:text-black p-1"
+                    onClick={() => deleteNote(note_id)}>
                     <i className="fa-solid fa-trash"></i>
                 </button>
-            </td>);
+            </div>);
     }
 
-    if (isArchiveMode) {
-        return archivePanel();
-    } 
-    return activePanel();
+    return (
+        <td className="NoteControlPanel">
+            {isArchiveMode  ? archivePanel() : activePanel()}
+        </td>)
 }
