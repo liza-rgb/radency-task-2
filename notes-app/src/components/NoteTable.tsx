@@ -65,11 +65,11 @@ export default function NoteTable() {
                 <thead className="text-white bg-secondary">
                     <tr key="note-table-row-header" className="bg-secondary">
                         <th className="w-10"></th>
-                        <th className="w-32 p-2 text-black">Name</th>
-                        <th className="w-32">Created</th>
-                        <th className="w-24">Category</th>
-                        <th className="w-40">Content</th>
-                        <th className="w-20">Dates</th>
+                        <th className="w-40 p-2 text-black">Name</th>
+                        <th className="w-40">Created</th>
+                        <th className="w-40">Category</th>
+                        <th className="w-48">Content</th>
+                        <th className="w-40">Dates</th>
                         <th className="w-32 p-3">{showModeButton()}</th>
                     </tr>
                 </thead>
