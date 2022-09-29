@@ -1,5 +1,10 @@
 import { Note } from "../state/interfaces/notes";
 
+export type Category = {
+    name: string,
+    iconClass: string
+}
+
 export const categories = [
     {
         name: "Task",
