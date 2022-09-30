@@ -20,7 +20,7 @@ ActiveNote.args = {
 }
 
 export const ArchiveNote = Template.bind({});
-ActiveNote.args = {
+ArchiveNote.args = {
     note_id: "1",
     isArchiveMode: true
 }
