@@ -48,7 +48,7 @@ export const NotesData: Note[] = [
         created: new Date(),
         category: "Idea",
         content: "I had a dream about this pizza. Must try to cook it!",
-        isArchived: false   
+        isArchived: true   
     }, 
     {
         id: uuidv4(),
@@ -56,6 +56,6 @@ export const NotesData: Note[] = [
         created: new Date(),
         category: "Task",
         content: "It is due on 15/09/2022",
-        isArchived: false   
+        isArchived: true   
     }
 ];

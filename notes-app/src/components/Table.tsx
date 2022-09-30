@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../state/reducers";
 import { Note } from "../state/interfaces/notes";
-import { categories, countNotesByCategory } from "../lib/categories";
+import { categories } from "../lib/categories";
 import NoteRow from "./NoteRow";
 import CategoryRow from "./CategoryRow";
 
@@ -23,14 +23,14 @@ export default function Table({ mode }: TableProps) {
             return ( 
                 <button onClick={changeMode}
                     className="hover:text-black transition">
-                    <i className="fa-regular fa-note-sticky"></i> Active
+                    <i className="fa-regular fa-note-sticky"></i> View Active
                 </button>
             )
         }
         return (
             <button onClick={changeMode}
                 className="hover:text-black transition">
-                <i className="fa-solid fa-box-archive"></i> Archive
+                <i className="fa-solid fa-box-archive"></i> View Archive
             </button>
         )
     }
@@ -75,8 +75,8 @@ export default function Table({ mode }: TableProps) {
         return (
             <tbody className="text-secondary">
                 {categories.map((category) => {
-                    return <CategoryRow category={category} key={keyCounter} />;
                     keyCounter++;
+                    return <CategoryRow category={category} key={keyCounter} />;
                 })}
             </tbody>
         )

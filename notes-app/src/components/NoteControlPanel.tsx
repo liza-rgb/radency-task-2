@@ -16,32 +16,32 @@ export default function NoteControlPanel({ note_id, isArchiveMode }: ControlProp
 
     function activePanel() {
         return (
-            <div className="text-xl flex justify-center">
+            <div className="flex justify-center">
                 <button className="hover:text-black p-1 transition"
                     onClick={()=> enableEditPopup(note_id)}>
-                    <i className="fa-solid fa-pencil"></i>
+                    Edit <i className="fa-solid fa-pencil"></i>
                 </button>
                 <button className="hover:text-black p-1 transition"
                     onClick={() => archiveNote(note_id)}>
-                    <i className="fa-solid fa-box-archive"></i> 
+                    Archive <i className="fa-solid fa-box-archive"></i> 
                 </button>
                 <button className="hover:text-black p-1 transition"
                     onClick={() => deleteNote(note_id)}>
-                    <i className="fa-solid fa-trash"></i>
+                    Delete <i className="fa-solid fa-trash"></i>
                 </button>
             </div>);
     }
 
     function archivePanel() {
         return (
-            <div className="text-xl flex justify-center">
+            <div className="flex justify-center">
                 <button className="hover:text-black p-1"
                     onClick={() => unarchiveNote(note_id)}>
-                    <i className="fa-solid fa-box-open"></i> 
+                    Unarchive<i className="fa-solid fa-box-open"></i> 
                 </button>
                 <button className="hover:text-black p-1"
                     onClick={() => deleteNote(note_id)}>
-                    <i className="fa-solid fa-trash"></i>
+                    Delete <i className="fa-solid fa-trash"></i>
                 </button>
             </div>);
     }
