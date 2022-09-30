@@ -15,16 +15,18 @@ const Template = (args) => (
     </Provider>
 )
 
-export const AddNewNote = Template.bind({});
-AddNewNote.play = async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const addNewNoteButton = await canvas.getByText('Add Note');
-    await userEvent.click(addNewNoteButton);
-}
-
 export const EditNote = Template.bind({});
 EditNote.play = async ({ canvasElement }) => {
     const canvas = within(canvasElement);
+
     const editFirstNote = await canvas.getAllByText('Edit')[0];
     await userEvent.click(editFirstNote);
+}
+
+export const AddNewNote = Template.bind({});
+AddNewNote.play = async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    const addNewNoteButton = await canvas.getByText('Add Note');
+    await userEvent.click(addNewNoteButton);
 }

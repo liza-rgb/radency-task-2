@@ -15,7 +15,8 @@ function App() {
       <Table mode="notes" />
       <AddNoteButton />
       <Table mode="summary" />
-      {popupInfo.type !== PopupType.NONE ? <NoteForm /> : ""}
+      {popupInfo.type === PopupType.ADD ? <NoteForm /> : ""}
+      {popupInfo.type === PopupType.EDIT ? <NoteForm /> : ""}
     </div>
   );
 }
