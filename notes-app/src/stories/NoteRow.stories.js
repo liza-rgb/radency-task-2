@@ -22,11 +22,6 @@ ActiveNote.args = {
 
 export const ArchiveNote = Template.bind({});
 ArchiveNote.args = {
-    note: {
-        name: "Do task #1",
-        category: "Task",
-        content: "Need to do until 09/10/2022",
-        created: new Date()
-    },
+    note: NotesData[6],
     isArchiveMode: true
 }

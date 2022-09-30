@@ -81,7 +81,7 @@ export default function NoteForm() {
                         {popupInfo.type === PopupType.ADD ? "Add New Note" : "Edit Note"} 
                         <button onClick={disablePopup} 
                             className="text-secondary hover:text-black">
-                            <i className="fa-solid fa-xmark"></i>
+                            x
                         </button>
                     </div>
                     <div className="card-body text-base">
